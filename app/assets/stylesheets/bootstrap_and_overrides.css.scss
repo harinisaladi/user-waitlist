@@ -1,3 +1,11 @@
 @import "bootstrap";
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
+
+.navbar-inner{
+    @include box-shadow(none !important);
+    border: 0;
+}
+
+.nav-collapse .nav > li > a, .nav-collapse .dropdown-menu a ,
+.navbar .nav a{font-weight:normal;}

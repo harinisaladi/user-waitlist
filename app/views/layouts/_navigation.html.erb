@@ -1,12 +1,16 @@
-<%= link_to "Home", root_path, :class => 'brand' %>
-<ul class="nav">
+<%= link_to image_tag("logo.png", :border => 0, :alt => '', :title => 'Lumoid'), root_path, :class => 'brand' %>
+<ul class="nav pull-right">
+  
   <% if user_signed_in? %>
     <li>
     <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
     </li>
   <% else %>
     <li>
-    <%= link_to 'Login', new_user_session_path %>
+    <%= link_to 'How it Works', '#' %>
+  </li>
+  <li>
+    <%= link_to 'Sign In', new_user_session_path %>
     </li>
   <% end %>
   <% if user_signed_in? %>
@@ -18,9 +22,5 @@
       <%= link_to 'Admin', users_path %>
       </li>
     <% end %>
-  <% else %>
-    <li>
-    <%= link_to 'Sign up', new_user_registration_path %>
-    </li>
   <% end %>
 </ul>

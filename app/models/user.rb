@@ -8,9 +8,10 @@ class User < ActiveRecord::Base
          :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :role_ids, :as => :admin
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
   
+  after_create :send_welcome_email
+
   # override Devise method
   # no password is required when the account is created; validate password when the user sets one
   validates_confirmation_of :password 
@@ -36,6 +37,13 @@ class User < ActiveRecord::Base
     else
       errors.add :base, "You must receive an invitation before you set your password." 
     end
+  end
+
+  private
+
+  def send_welcome_email
+    return if email.include?(ENV['ADMIN_EMAIL']) 
+    UserMailer.welcome_email(self).deliver
   end
 
 end
