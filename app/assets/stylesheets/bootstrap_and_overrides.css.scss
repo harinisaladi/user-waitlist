@@ -9,3 +9,14 @@ body { padding-top: 60px; }
 
 .nav-collapse .nav > li > a, .nav-collapse .dropdown-menu a ,
 .navbar .nav a{font-weight:normal;}
+
+.modal-open {
+  overflow: hidden;
+}
+
+body.modal-open,
+.modal-open .navbar-fixed-top,
+.modal-open .navbar-fixed-bottom {
+  margin-right: 15px;
+}
+
