@@ -2,15 +2,15 @@
   <%= simple_form_for resource, :as => resource_name, :url => registration_path(resource_name) , :html => {:class => 'form-horizontal' } do |f| %> 
     <div class="modal-header">
          <a class="close" data-dismiss="modal">&#215;</a>
-         <h3 id="myModalLabel">Rent amazing photography gear</h3>
+         <h3><p class="headline">Rent amazing photography gear</p></h3>
     </div>
     <div class="modal-body">
       <%= f.error_notification %>
-      <div>Lumoid hasn't launched yet. Sign up below, so we can send you an invite as soon as we're ready</div> </br>
+      <p id="coming-soon">Lumoid hasn't launched yet. Sign up below, so we can send you an invite as soon as we're ready</p> </br>
       <%= f.input :email, :label => false, :placeholder => 'email' %>
     </div>
     <div class="modal-footer">
-      <%= f.submit "Sign Up", :class => "btn btn-primary", :id => 'invitation_button' %>
+      <%= f.submit "Sign Up", :class => "btn btn-large btn-success", :id => 'invitation_button' %>
     </div>
   <% end %> 
 </div>
