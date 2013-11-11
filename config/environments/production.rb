@@ -69,7 +69,7 @@ UserWaitlist::Application.configure do
   }
 
 
-  config.action_mailer.default_url_options = { :host => 'example.com' }
+  config.action_mailer.default_url_options = { :host => 'http://safe-oasis-9185.herokuapp.com/' }
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
   config.action_mailer.delivery_method = :smtp
