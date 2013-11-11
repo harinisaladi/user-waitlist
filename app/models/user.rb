@@ -59,9 +59,29 @@ class User < ActiveRecord::Base
   
   private
 
-  def send_welcome_email
-    return if email.include?(ENV['ADMIN_EMAIL']) 
-    UserMailer.welcome_email(self).deliver
+  def add_user_to_mailchimp
+    return if email.include?(ENV['ADMIN_EMAIL'])
+    mailchimp = Gibbon::API.new
+    result = mailchimp.lists.subscribe({
+      :id => ENV['MAILCHIMP_LIST_ID'],
+      :email => {:email => self.email},
+      :double_optin => false,
+      :update_existing => true,
+      :send_welcome => true
+      })
+    Rails.logger.info("Subscribed #{self.email} to MailChimp") if result
+  end
+
+  def remove_user_from_mailchimp
+    mailchimp = Gibbon::API.new
+    result = mailchimp.lists.unsubscribe({
+      :id => ENV['MAILCHIMP_LIST_ID'],
+      :email => {:email => self.email},
+      :delete_member => true,
+      :send_goodbye => false,
+      :send_notify => true
+      })
+    Rails.logger.info("Unsubscribed #{self.email} from MailChimp") if result
   end
 
 end
